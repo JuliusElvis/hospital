@@ -4,7 +4,6 @@ import com.project.hospital.data.PatientRegistrationDTO;
 import com.project.hospital.data.VitalsDTO;
 import com.project.hospital.persistence.PatientEntity;
 import com.project.hospital.persistence.VitalsEntity;
-import com.project.hospital.persistence.VitalsEntityJpaRepository;
 import com.project.hospital.service.PatientRegistrationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -51,9 +50,8 @@ public class PatientRegistrationController {
         return registrationService.saveVital(newVitals);
     }
 
-    @GetMapping()
-    public Optional<PatientEntity> getPaient(){
-        int id = 1;
+    @GetMapping("/{id}")
+    public Optional<PatientEntity> getPatientById(@PathVariable int id){
         var patient = registrationService.getPatientById(id);
 
         return patient;
